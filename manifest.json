@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Tennis Court Reservation",
+  "description": "",
+  "version": "1.0",
+  "content_scripts": [
+    {
+      "js": [
+        "scripts/content.js"
+      ],
+      "matches": [
+        "https://www.naver.com/",
+        "https://github.com/GoogleChrome/chrome-extensions-samples/blob/main/functional-samples/tutorial.reading-time/manifest.json",
+        "https://res.isdc.co.kr/reservationInfo.do"
+      ]
+    }
+  ]
+}
+
