@@ -1,5 +1,13 @@
-function simulateKeyPress(node, value, isString) {
+let options;
+chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+    options.count = message.data.count;
+    options.name = message.data.name;
+    options.phone = message.data.phone;
 
+    sendResponse({response: options});
+});
+
+function simulateKeyPress(node, value, isString) {
     if (isString) {
         const keydownEvent = new KeyboardEvent('keydown', {
             key: value,
@@ -65,7 +73,7 @@ function simulateKeyPress(node, value, isString) {
 }
 
 function reservation() {
-    let isReady = document.querySelector(".tableBox")
+    let isReady = document.querySelector("#timeTable")
 
     if (isReady) {
         clearInterval(interval)
@@ -76,23 +84,25 @@ function reservation() {
         const name = document.querySelector("#user2")
         const phone = document.querySelector("#user2_contact")
 
+
         time.click();
         type.click();
 
+        // count
         count.focus()
-        const countNum = "2"
+        const countNum = options.count
         simulateKeyPress(count, countNum, false);
 
-        // name
+        // name:
         name.focus()
-        const nameChar = "정종찬"
+        const nameChar = options.name
         for (let char of nameChar) {
-            simulateKeyPress(name, char, false);
+            simulateKeyPress(name, char, true);
         }
 
         // phone
         phone.focus()
-        const phoneNum = "01077300539"
+        const phoneNum = options.phone
         for (let num of phoneNum) {
             simulateKeyPress(phone, num, false);
         }

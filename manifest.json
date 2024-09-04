@@ -3,13 +3,19 @@
   "name": "Tennis Court Reservation",
   "description": "",
   "version": "1.0",
+  "background": {
+    "service_worker": "scripts/background.js"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
   "content_scripts": [
     {
       "js": [
         "scripts/content.js"
       ],
       "matches": [
-        "https://res.isdc.co.kr/reservationInfo.do"
+        "https://res.isdc.co.kr/facilityInfo.do"
       ]
     }
   ]
