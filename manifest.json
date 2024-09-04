@@ -9,8 +9,6 @@
         "scripts/content.js"
       ],
       "matches": [
-        "https://www.naver.com/",
-        "https://github.com/GoogleChrome/chrome-extensions-samples/blob/main/functional-samples/tutorial.reading-time/manifest.json",
         "https://res.isdc.co.kr/reservationInfo.do"
       ]
     }
