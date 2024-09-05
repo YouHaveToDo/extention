@@ -5,5 +5,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.querySelector('#save').addEventListener('click', () => {
         save(count.value, name.value, phone.value)
+        alert("saved....")
     });
 });
