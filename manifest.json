@@ -3,6 +3,12 @@
   "name": "Tennis Court Reservation",
   "description": "",
   "version": "1.0",
+  "background": {
+    "service_worker": "scripts/background.js"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
   "content_scripts": [
     {
       "js": [

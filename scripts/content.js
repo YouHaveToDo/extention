@@ -1,5 +1,4 @@
 function simulateKeyPress(node, value, isString) {
-
     if (isString) {
         const keydownEvent = new KeyboardEvent('keydown', {
             key: value,
@@ -64,11 +63,20 @@ function simulateKeyPress(node, value, isString) {
     }
 }
 
-function reservation() {
-    let isReady = document.querySelector(".tableBox")
+async function reservation() {
+    let isReady = document.querySelector("#timeTable")
 
     if (isReady) {
         clearInterval(interval)
+
+        const options = await new Promise((resolve) => {
+            chrome.runtime.sendMessage(
+                {action: "fetchOptions"},
+                function (response) {
+                    resolve(response.options); // 응답을 resolve로 전달하여 Promise가 완료되도록 함
+                }
+            );
+        });
 
         const time = document.querySelector(".td-title label")
         const type = document.querySelector("label[for='userType-P']")
@@ -76,23 +84,25 @@ function reservation() {
         const name = document.querySelector("#user2")
         const phone = document.querySelector("#user2_contact")
 
+
         time.click();
         type.click();
 
+        // count
         count.focus()
-        const countNum = "2"
+        const countNum = options.count ?? "2"
         simulateKeyPress(count, countNum, false);
 
-        // name
+        // name:
         name.focus()
-        const nameChar = "정종찬"
+        const nameChar = options.name ?? "정종찬"
         for (let char of nameChar) {
-            simulateKeyPress(name, char, false);
+            simulateKeyPress(name, char, true);
         }
 
         // phone
         phone.focus()
-        const phoneNum = "01077300539"
+        const phoneNum = options.phone ?? "01077300539"
         for (let num of phoneNum) {
             simulateKeyPress(phone, num, false);
         }
