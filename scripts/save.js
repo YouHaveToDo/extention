@@ -1,7 +1,5 @@
 function save(count, name, phone) {
-    chrome.runtime.sendMessage({action: "sendToContentScript", data: {count, name, phone}}, function (response) {
-        console.log('Response from background:', response);
+    chrome.runtime.sendMessage({action: "saveOptions", data: {count, name, phone}});
 
-        alert("saved...")
-    });
+    alert("saved!!")
 }
