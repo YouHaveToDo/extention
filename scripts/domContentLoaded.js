@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const name = document.querySelector('#name')
         const phone = document.querySelector('#phone')
 
-        save(time.value, count.value, name.value, phone.value)
+        save(time?.value ?? "", count.value, name.value, phone.value)
         alert("saved....")
     });
 });
