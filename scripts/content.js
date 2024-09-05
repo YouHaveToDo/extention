@@ -84,6 +84,10 @@ async function reservation() {
         const name = document.querySelector("#user2")
         const phone = document.querySelector("#user2_contact")
 
+        if (!type || !count || !name || !phone) {
+            console.error("can't find elements");
+            return;
+        }
 
         time.click();
         type.click();
@@ -109,13 +113,15 @@ async function reservation() {
 
         document.querySelector("#answer").focus()
 
-        document.addEventListener('keydown', function (event) {
+        document.querySelector("#check").addEventListener('keydown', function (event) {
             if (event.key === 'Enter') {
-                document.querySelector("#check").click()
+                event.target.click()
             }
+        });
 
+        document.querySelector("#btnReservation").addEventListener('keydown', function (event) {
             if (event.key === 'Shift') {
-                document.querySelector("#btnReservation").click()
+                event.target.click()
             }
         });
     }
