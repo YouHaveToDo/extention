@@ -113,15 +113,13 @@ async function reservation() {
 
         document.querySelector("#answer").focus()
 
-        document.querySelector("#check").addEventListener('keydown', function (event) {
+        document.addEventListener('keydown', function (event) {
             if (event.key === 'Enter') {
-                event.target.click()
+                document.querySelector("#check").click()
             }
-        });
 
-        document.querySelector("#btnReservation").addEventListener('keydown', function (event) {
             if (event.key === 'Shift') {
-                event.target.click()
+                document.querySelector("#btnReservation").click()
             }
         });
     }
