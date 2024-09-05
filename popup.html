@@ -2,15 +2,58 @@
 <head>
     <meta content="script-src 'self';" http-equiv="Content-Security-Policy">
     <script src="scripts/save.js"></script>
+    <script src="scripts/findCheckedInput.js"></script>
     <script src="scripts/domContentLoaded.js"></script>
     <title></title>
 </head>
 <body>
 <h1>Tennis Court Reservation</h1>
 <div>
-    <input id="count" placeholder="count" type="text">
-    <input id="name" placeholder="name" type="text">
-    <input id="phone" placeholder="phone" type="text">
+    <div style="margin-bottom: 10px">
+        <table border="1">
+            <tr>
+                <th>select</th>
+                <th>time</th>
+            </tr>
+            <tr>
+                <td><input class="time" name="time" type="radio" value="0"></td>
+                <td>6:00 ~ 8:00</td>
+            </tr>
+            <tr>
+                <td><input class="time" name="time" type="radio" value="1"></td>
+                <td>8:00 ~ 10:00</td>
+            </tr>
+            <tr>
+                <td><input class="time" name="time" type="radio" value="2"></td>
+                <td>10:00 ~ 12:00</td>
+            </tr>
+            <tr>
+                <td><input class="time" name="time" type="radio" value="3"></td>
+                <td>12:00 ~ 14:00</td>
+            </tr>
+            <tr>
+                <td><input class="time" name="time" type="radio" value="4"></td>
+                <td>14:00 ~ 16:00</td>
+            </tr>
+            <tr>
+                <td><input class="time" name="time" type="radio" value="5"></td>
+                <td>16:00 ~ 18:00</td>
+            </tr>
+            <tr>
+                <td><input class="time" name="time" type="radio" value="6"></td>
+                <td>18:00 ~ 20:00</td>
+            </tr>
+            <tr>
+                <td><input class="time" name="time" type="radio" value="7"></td>
+                <td>20:00 ~ 22:00</td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <input id="count" placeholder="count" type="text">
+        <input id="name" placeholder="name" type="text">
+        <input id="phone" placeholder="phone" type="text">
+    </div>
 </div>
 <div>
     <button id="save">save</button>

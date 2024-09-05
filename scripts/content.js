@@ -78,12 +78,16 @@ async function reservation() {
             );
         });
 
-        const time = document.querySelector(".td-title label")
+        const time = document.querySelector(`.td-title label[for='rbTime-${options.time}']`) ?? document.querySelector('.td-title label')
         const type = document.querySelector("label[for='userType-P']")
         const count = document.querySelector("#headcount")
         const name = document.querySelector("#user2")
         const phone = document.querySelector("#user2_contact")
 
+        if (!type || !count || !name || !phone) {
+            console.error("can't find elements");
+            return;
+        }
 
         time.click();
         type.click();
