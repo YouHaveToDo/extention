@@ -15,7 +15,7 @@
         "scripts/content.js"
       ],
       "matches": [
-        "https://res.isdc.co.kr/facilityInfo.do"
+        "https://res.isdc.co.kr/reservationInfo.do"
       ]
     }
   ]
