@@ -1,3 +1,26 @@
+function fetchOptions() {
+    return new Promise((resolve) => {
+        chrome.runtime.sendMessage(
+            {action: "fetchOptions"},
+            function (response) {
+                resolve(response.options);
+            }
+        );
+    });
+}
+
+function findTimeLabel(timeOption) {
+    const timeRow = document.querySelectorAll('.tableBox table tr')
+
+    for (let row of timeRow) {
+        if (row.textContent.includes(timeOption)) {
+            return row.querySelector('.td-title label')
+        }
+    }
+
+    return null
+}
+
 function simulateKeyPress(node, value, isString) {
     if (isString) {
         const keydownEvent = new KeyboardEvent('keydown', {
@@ -69,16 +92,9 @@ async function reservation() {
     if (isReady) {
         clearInterval(interval)
 
-        const options = await new Promise((resolve) => {
-            chrome.runtime.sendMessage(
-                {action: "fetchOptions"},
-                function (response) {
-                    resolve(response.options); // 응답을 resolve로 전달하여 Promise가 완료되도록 함
-                }
-            );
-        });
+        const options = await fetchOptions();
 
-        const time = document.querySelector(`.td-title label[for='rbTime-${options.time}']`) ?? document.querySelector('.td-title label')
+        const time = findTimeLabel(options.time) ?? document.querySelector('.td-title label')
         const type = document.querySelector("label[for='userType-P']")
         const count = document.querySelector("#headcount")
         const name = document.querySelector("#user2")
