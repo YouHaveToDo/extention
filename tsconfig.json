@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "types": [
+      "chrome",
+      "node"
+    ],
+    "outDir": "./dist",
+    "rootDir": "./",
+    "lib": [
+      "es2015",
+      "dom"
+    ],
+    "baseUrl": "./",
+    "paths": {
+      "@interface/*": [
+        "interface/*"
+      ],
+      "vite": [
+        "./node_modules/vite"
+      ]
+    }
+  },
+  "include": [
+    "./src/**/*.ts"
+  ]
+}

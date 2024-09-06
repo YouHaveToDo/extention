@@ -1,4 +1,6 @@
-function fetchOptions() {
+import Options from "../interface/options";
+
+function fetchOptions(): Promise<Options> {
     return new Promise((resolve) => {
         chrome.runtime.sendMessage(
             {action: "fetchOptions"},
@@ -9,23 +11,26 @@ function fetchOptions() {
     });
 }
 
-function findTimeLabel(timeOption) {
+function findTimeLabel(timeOption: string) {
     const timeRow = document.querySelectorAll('.tableBox table tr')
 
-    for (let row of timeRow) {
-        if (row.textContent.includes(timeOption)) {
-            return row.querySelector('.td-title label')
-        }
-    }
+    let timeLabel: HTMLLabelElement | null = null;
 
-    return null
+    timeRow.forEach(row => {
+        if (row.textContent.includes(timeOption)) {
+            timeLabel = row.querySelector('.td-title label');
+            return;
+        }
+    });
+
+    return timeLabel
+
 }
 
 function simulateKeyPress(node, value, isString) {
     if (isString) {
         const keydownEvent = new KeyboardEvent('keydown', {
             key: value,
-            char: value,
             shiftKey: false,
             bubbles: true,
             cancelable: true
@@ -33,7 +38,6 @@ function simulateKeyPress(node, value, isString) {
 
         const keypressEvent = new KeyboardEvent('keypress', {
             key: value,
-            char: value,
             shiftKey: false,
             bubbles: true,
             cancelable: true
@@ -41,7 +45,6 @@ function simulateKeyPress(node, value, isString) {
 
         const keyupEvent = new KeyboardEvent('keyup', {
             key: value,
-            char: value,
             shiftKey: false,
             bubbles: true,
             cancelable: true
@@ -55,8 +58,6 @@ function simulateKeyPress(node, value, isString) {
         const keydownEvent = new KeyboardEvent('keydown', {
             key: value,
             code: `Digit${value}`,
-            keyCode: value.charCodeAt(0),
-            charCode: value.charCodeAt(0),
             bubbles: true,
             cancelable: true
         });
@@ -64,8 +65,6 @@ function simulateKeyPress(node, value, isString) {
         const keypressEvent = new KeyboardEvent('keypress', {
             key: value,
             code: `Digit${value}`,
-            keyCode: value.charCodeAt(0),
-            charCode: value.charCodeAt(0),
             bubbles: true,
             cancelable: true
         });
@@ -73,8 +72,6 @@ function simulateKeyPress(node, value, isString) {
         const keyupEvent = new KeyboardEvent('keyup', {
             key: value,
             code: `Digit${value}`,
-            keyCode: value.charCodeAt(0),
-            charCode: value.charCodeAt(0),
             bubbles: true,
             cancelable: true
         });
@@ -92,13 +89,13 @@ async function reservation() {
     if (isReady) {
         clearInterval(interval)
 
-        const options = await fetchOptions();
+        const options: Options = await fetchOptions();
 
         const time = findTimeLabel(options.time) ?? document.querySelector('.td-title label')
-        const type = document.querySelector("label[for='userType-P']")
-        const count = document.querySelector("#headcount")
-        const name = document.querySelector("#user2")
-        const phone = document.querySelector("#user2_contact")
+        const type: HTMLLabelElement = document.querySelector("label[for='userType-P']")
+        const count: HTMLInputElement = document.querySelector("#headcount")
+        const name: HTMLInputElement = document.querySelector("#user2")
+        const phone: HTMLInputElement = document.querySelector("#user2_contact")
 
         if (!type || !count || !name || !phone) {
             console.error("can't find elements");
@@ -127,18 +124,18 @@ async function reservation() {
             simulateKeyPress(phone, num, false);
         }
 
-        document.querySelector("#answer").focus()
+        (document.querySelector("#answer") as HTMLInputElement).focus()
 
         document.addEventListener('keydown', function (event) {
             if (event.key === 'Enter') {
-                document.querySelector("#check").click()
+                (document.querySelector("#check") as HTMLInputElement).click()
             }
 
             if (event.key === 'Shift') {
-                document.querySelector("#btnReservation").click()
+                (document.querySelector("#btnReservation") as HTMLInputElement).click()
             }
         });
     }
 }
 
-let interval = setInterval(reservation, 100)
+const interval = setInterval(reservation, 100)

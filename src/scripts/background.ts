@@ -8,7 +8,6 @@ const options = {
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     try {
         if (request.action === "saveOptions") {
-
             options.time = request.data.time
             options.count = request.data.count
             options.name = request.data.name
