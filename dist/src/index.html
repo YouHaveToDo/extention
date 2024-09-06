@@ -1,0 +1,95 @@
+<html lang="kr">
+<head>
+    <meta content="script-src 'self';" http-equiv="Content-Security-Policy">
+    <script src="./domContentLoaded.js"></script>
+    <title></title>
+    <style>
+        body {
+            width: 400px
+        }
+
+        .contents {
+            display: flex;
+            justify-content: center;
+            flex-direction: column
+        }
+
+        .contents > div {
+            margin-bottom: 10px;
+        }
+
+        .contents > div > input {
+            width: 100%;
+        }
+
+        table {
+            margin-bottom: 20px;
+        }
+
+        table td {
+            text-align: center;
+        }
+
+        button {
+            width: 100%;
+        }
+    </style>
+</head>
+<body style="text-align: center">
+<h1>Tennis Court Reservation</h1>
+<div class="contents">
+    <table border="1">
+        <tr>
+            <th>select</th>
+            <th>time</th>
+        </tr>
+        <tr>
+            <td><input class="time" name="time" type="radio" value="6:00 ~ 8:00"></td>
+            <td>6:00 ~ 8:00</td>
+        </tr>
+        <tr>
+            <td><input class="time" name="time" type="radio" value="8:00 ~ 10:00"></td>
+            <td>8:00 ~ 10:00</td>
+        </tr>
+        <tr>
+            <td><input class="time" name="time" type="radio" value="10:00 ~ 12:00"></td>
+            <td>10:00 ~ 12:00</td>
+        </tr>
+        <tr>
+            <td><input class="time" name="time" type="radio" value="12:00 ~ 14:00"></td>
+            <td>12:00 ~ 14:00</td>
+        </tr>
+        <tr>
+            <td><input class="time" name="time" type="radio" value="14:00 ~ 16:00"></td>
+            <td>14:00 ~ 16:00</td>
+        </tr>
+        <tr>
+            <td><input class="time" name="time" type="radio" value="16:00 ~ 18:00"></td>
+            <td>16:00 ~ 18:00</td>
+        </tr>
+        <tr>
+            <td><input class="time" name="time" type="radio" value="18:00 ~ 20:00"></td>
+            <td>18:00 ~ 20:00</td>
+        </tr>
+        <tr>
+            <td><input class="time" name="time" type="radio" value="20:00 ~ 22:00"></td>
+            <td>20:00 ~ 22:00</td>
+        </tr>
+    </table>
+
+    <div>
+        <input id="count" placeholder="count of user" type="text">
+    </div>
+    <div>
+        <input id="name" placeholder="name" type="text">
+    </div>
+    <div>
+        <input id="phone" placeholder="phone" type="text">
+    </div>
+</div>
+
+<div>
+    <button id="save">save</button>
+</div>
+</body>
+</html>

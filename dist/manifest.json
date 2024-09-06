@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Tennis Court Reservation",
+  "description": "",
+  "version": "1.0",
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "action": {
+    "default_popup": "src/index.html"
+  },
+  "content_scripts": [
+    {
+      "js": [
+        "src/content.js"
+      ],
+      "matches": [
+        "https://res.isdc.co.kr/reservationInfo.do"
+      ]
+    }
+  ]
+}
+

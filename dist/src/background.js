@@ -1,0 +1,1 @@
+const o={time:"",count:"",name:"",phone:""};chrome.runtime.onMessage.addListener(function(n,e,t){try{if(n.action==="saveOptions"&&(o.time=n.data.time,o.count=n.data.count,o.name=n.data.name,o.phone=n.data.phone),n.action==="fetchOptions")return t({options:o}),!0}catch(a){console.error("Error in background script:",a.message)}});
