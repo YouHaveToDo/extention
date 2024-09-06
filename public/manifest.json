@@ -4,15 +4,15 @@
   "description": "",
   "version": "1.0",
   "background": {
-    "service_worker": "scripts/background.js"
+    "service_worker": "src/background.js"
   },
   "action": {
-    "default_popup": "popup.html"
+    "default_popup": "src/index.html"
   },
   "content_scripts": [
     {
       "js": [
-        "scripts/content.js"
+        "src/content.js"
       ],
       "matches": [
         "https://res.isdc.co.kr/reservationInfo.do"
